@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+void ship(char s[],int *x,int *y,int *type,int *jahat)
+{
+    int i=0,j=3,sum=0;
+
+
+    *type=(s[0]-48);
+
+
+    while(s[i]!=44)
+        {
+            i++;
+        }
+
+    while(j<i)
+        {
+            sum=(sum*10)+(s[j]-48);
+
+            j++;
+        }
+    *x=sum;
+
+    i=0;j=0;sum=0;
+
+    while(s[j]!=44)
+    {
+        j++;
+    }
+
+        j++;
+
+    while(s[i]!=41)
+    {
+        i++;
+    }
+    while(j<i)
+    {
+        sum=(sum*10)+(s[j]-48);
+
+        j++;
+    }
+    *y=sum;
+
+    i=0;
+    while(s[i]!=32)
+    {
+        i++;
+    }
+
+    i++;
+
+    if((s[i]==85)||(s[i]==117))
+    {
+        *jahat=1;
+    }
+
+    if((s[i]==68)||(s[i]==100))
+    {
+        *jahat=2;
+    }
+
+    if((s[i]==76)||(s[i]==108))
+    {
+        *jahat=3;
+    }
+
+    if((s[i]==114)||(s[i]==82))
+    {
+        *jahat=4;
+    }
+}
+
+void poul(int *money,int type)
+{
+    if(type==1)
+        *money=(*money)-80;
+    else if(type==2)
+        *money=*money-120;
+    else if(type==3)
+        *money=*money-160;
+    else if(type==4)
+        *money=*money-200;
+}
+
+int main()
+{
+char s[100];
+int x,y,type,jahat,money=2100;
+
+gets(s);
+ship(s,&x,&y,&type,&jahat);
+printf("%s\n%d\n%d\n%d\n%d\n",s,x,y,type,jahat);
+poul(&money,type);
+printf("\n%d  %d",type,money);
+    return 0;
+}

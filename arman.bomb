@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*ابعاد زمین:::m*n*/
+/*تابع print برای نمایش زمین*/
+void print (int m, int n, int zamin[m][n])
+{
+    for (int i=0 ; i< n; i++)
+    {
+        for (int j=0 ; j< m; j++)
+            printf("%c ", zamin[i][j]);
+            printf ("\n");
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////
+/*برای چک کردن جا شدن کشتی در زمین*/
+int chek (int m, int n, int *x, int *y, int *jahat, int *type )
+{
+    if((*x <= m)&&(*y <= n) && (*x >= 0) && (*y >= 0))
+    {
+        switch (*jahat)
+        {
+        case 1:
+            if(*y-*type>= 0)
+            return 1;
+            else
+            return 0;
+            break;
+        case 2:
+            if(*y+*type <=n)
+            return 1;
+            else
+            return 0;
+            break;
+        case 3:
+            if(*x+*type<= m)
+            return 1;
+            else
+            return 0;
+            break;
+        case 4:
+            if(0<= *x-*type)
+            return 1;
+            else
+            return 0;
+            break;
+        }
+    }
+    else
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+/*برای تغییر زمین که قرار نمایش داده بشه*/
+void target (int m, int n, int *x, int *y, int zamin[m][n])
+{
+      if (zamin[*x][*y]== 1)
+        zamin[i][j]= 42;
+      else
+      if (zamin[*x][*y]== 0)
+        zamin[i][j]= 32;
+}
+void namayesh_target (int m, int n, int *x, int *y, int zamin[m][n])
+{
+    for (int i=0; i< n; i++)
+        for (int j=0; j< m; j++)
+    {
+        if (zamin[i][j]== 42)
+            printf ("*");
+        if (zamin[i][j]== 32)
+            printf (" ");
+        if (zamin[i][j]== 0 && zamin[i][j]== 1)
+            printf ("?");
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////
+/*برای جک کردن حضور نقطه هدف در نقشه*/
+int chek2 (int *x, int *y, int m, int n)
+{
+    if((*x >= 0) && (*x <= m) && (*y >= 0) && (*y <= n))
+        return 1;
+    else
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+/*برای بمب ها خطی.1 ستونی.2 گوشه.3 دوری.4*/
+void bomb (int m, int n, int *x, int *y, int *no_bomb, int zamin[m][n])
+{
+switch (*no_bomb)
+{
+    case 1:
+            for (int i=0; i <m; i++)
+                (zamin[i][*y]== 1)? (zamin[i][*y]= 42) : (zamin[i][*y]== 0)? (zamin[i][*y]= 32);
+        break;
+
+    case 2:
+            for (int i=0; i <n; i++)
+                (zamin[*x][i]== 1)? (zamin[*x][i]= 42) : (zamin[*x][i]== 0)? (zamin[*x][i]= 32);
+        break;
+
+    case 3:
+        (zamin[0][0]== 1)? (zamin[0][0]= 42) : (zamin[0][0]== 0)? (zamin[0][0]= 32);
+        (zamin[0][n-1]== 1)? (zamin[0][n-1]= 42) : (zamin[0][n-1]== 0)? (zamin[0][n-1]= 32);
+        (zamin[m-1][0]== 1)? (zamin[m-1][0]= 42) : (zamin[m-1][0]== 0)? (zamin[m-1][0]= 32);
+        (zamin[m-1][n-1]== 1)? (zamin[m-1][n-1]= 42) : (zamin[m-1][n-1]== 0)? (zamin[m-1][n-1]= 32);
+        break;
+
+    case 4:
+        (zamin[*x+1][*y-1]== 1)? (zamin[*x+1][*y-1]= 42) : (zamin[*x+1][*y-1]== 0)? (zamin[*x+1][*y-1]= 32);
+        (zamin[*x+1][*y]== 1)? (zamin[*x+1][*y]= 42) : (zamin[*x+1][*y]== 0)? (zamin[*x+1][*y]= 32);
+        (zamin[*x+1][*y+1]== 1)? (zamin[*x+1][*y+1]= 42) : (zamin[*x+1][*y+1]== 0)? (zamin[*x+1][*y+1]= 32);
+        (zamin[*x][*y-1]== 1)? (zamin[*x][*y-1]= 42) : (zamin[*x][*y-1]== 0)? (zamin[*x][*y-1]= 32);
+        (zamin[*x][*y+1]== 1)? (zamin[*x][*y+1]= 42) : (zamin[*x][*y+1]== 0)? (zamin[*x][*y+1]= 32);
+        (zamin[*x-1][*y-1]== 1)? (zamin[*x-1][*y-1]= 42) : (zamin[*x-1][*y-1]== 0)? (zamin[*x-1][*y-1]= 32);
+        (zamin[*x-1][*y]== 1)? (zamin[*x-1][*y]= 42) : (zamin[*x-1][*y]== 0)? (zamin[*x-1][*y]= 32);
+        (zamin[*x-1][*y+1]== 1)? (zamin[*x-1][*y+1]= 42) : (zamin[*x-1][*y+1]== 0)? (zamin[*x-1][*y+1]= 32);
+        break;
+}
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+int main()
+{
+    printf ("*Hello welcome to this game*\n");
+    printf ("First enter the length of the playground and then width :");
+    int m, n;
+    scanf ("%d %d", &m, &n);
+    return 0;
+}

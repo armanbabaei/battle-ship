@@ -1,0 +1,41 @@
+void set_keshti(int m,int n,int zamin[m][n],int x,int y,int jahat,int type)//قرار دادن کشتی در زمین
+{
+    int i;
+
+    switch(jahat)
+    {
+
+        case 1:
+
+            for(i=0;i<type;i++)
+            {
+                zamin[x][y-i]=1;
+            }
+
+            break;
+
+        case 2:
+            for(i=0;i<type;i++)
+            {
+                zamin[x][y+i]=1;
+            }
+
+            break;
+
+        case 3:
+            for(i=0;i<type;i++)
+            {
+                zamin[x+i][y]=1;
+            }
+
+            break;
+
+        case 4:
+            for(i=0;i<type;i++)
+            {
+                zamin[x-i][y]=1;
+            }
+
+            break;
+    }
+}

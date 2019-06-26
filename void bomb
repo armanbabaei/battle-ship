@@ -1,0 +1,33 @@
+void bomb (int m, int n, int *x, int *y, int *no_bomb, int zamin[m][n])
+{
+switch (*no_bomb)
+{
+    case 1:
+            for (int i=0; i <m; i++)
+                (zamin[i][*y]== 1)? (zamin[i][*y]= 42) : ((zamin[i][*y]== 0)? (zamin[i][*y]= 32) : 1);
+        break;
+
+    case 2:
+            for (int i=0; i <n; i++)
+                (zamin[*x][i]== 1)? (zamin[*x][i]= 42) : ((zamin[*x][i]== 0)? (zamin[*x][i]= 32) : 1);
+        break;
+
+    case 3:
+        (zamin[0][0]== 1)? (zamin[0][0]= 42) : ((zamin[0][0]== 0)? (zamin[0][0]= 32): 1);
+        (zamin[0][n-1]== 1)? (zamin[0][n-1]= 42) : ((zamin[0][n-1]== 0)? (zamin[0][n-1]= 32) : 1);
+        (zamin[m-1][0]== 1)? (zamin[m-1][0]= 42) : ((zamin[m-1][0]== 0)? (zamin[m-1][0]= 32) : 1);
+        (zamin[m-1][n-1]== 1)? (zamin[m-1][n-1]= 42) : ((zamin[m-1][n-1]== 0)? (zamin[m-1][n-1]= 32) : 1);
+        break;
+
+    case 4:
+        (zamin[*x+1][*y-1]== 1)? (zamin[*x+1][*y-1]= 42) : ((zamin[*x+1][*y-1]== 0)? (zamin[*x+1][*y-1]= 32) : 1);
+        (zamin[*x+1][*y]== 1)? (zamin[*x+1][*y]= 42) : ((zamin[*x+1][*y]== 0)? (zamin[*x+1][*y]= 32) : 1);
+        (zamin[*x+1][*y+1]== 1)? (zamin[*x+1][*y+1]= 42) : ((zamin[*x+1][*y+1]== 0)? (zamin[*x+1][*y+1]= 32) : 1);
+        (zamin[*x][*y-1]== 1)? (zamin[*x][*y-1]= 42) : ((zamin[*x][*y-1]== 0)? (zamin[*x][*y-1]= 32) : 1);
+        (zamin[*x][*y+1]== 1)? (zamin[*x][*y+1]= 42) : ((zamin[*x][*y+1]== 0)? (zamin[*x][*y+1]= 32) : 1);
+        (zamin[*x-1][*y-1]== 1)? (zamin[*x-1][*y-1]= 42) : ((zamin[*x-1][*y-1]== 0)? (zamin[*x-1][*y-1]= 32) : 1);
+        (zamin[*x-1][*y]== 1)? (zamin[*x-1][*y]= 42) : ((zamin[*x-1][*y]== 0)? (zamin[*x-1][*y]= 32) : 1);
+        (zamin[*x-1][*y+1]== 1)? (zamin[*x-1][*y+1]= 42) : ((zamin[*x-1][*y+1]== 0)? (zamin[*x-1][*y+1]= 32) : 1);
+        break;
+}
+}

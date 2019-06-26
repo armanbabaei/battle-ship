@@ -1,0 +1,6 @@
+void initializer (int m, int n, int zamin[m][n])
+{
+for (int i=0; i< m; i++)
+     for (int j=0; j< n; j++)
+     zamin[i][j]= 0;
+}

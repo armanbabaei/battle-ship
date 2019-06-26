@@ -1,0 +1,55 @@
+int check_keshti2(int m,int n,int zamin[m][n],int x,int y,int jahat,int type)/*رار دادن کشتی در زمین*/
+{
+    int i;
+
+    switch(jahat)
+    {
+        case 1:
+
+            for(i=0;i<type;i++)
+            {
+                if(zamin[x][y-i]==1)
+                    return 0;
+                else
+                    continue;
+            }
+            return 1;
+            break;
+
+        case 2:
+
+            for(i=0;i<type;i++)
+            {
+                if(zamin[x][y+i]==1)
+                    return 0;
+                else
+                    continue;
+            }
+            return 1;
+            break;
+
+        case 3:
+
+            for(i=0;i<type;i++)
+            {
+                if(zamin[x+i][y]==1)
+                    return 0;
+                else
+                    continue;
+            }
+            return 1;
+            break;
+
+        case 4:
+
+            for(i=0;i<type;i++)
+            {
+                if(zamin[x-i][y]==1)
+                    return 0;
+                else
+                    continue;
+            }
+            return 1;
+            break;
+    }
+}

@@ -1,0 +1,19 @@
+void identifier(char s[20], int *no_bomb, int *x, int *y)
+{
+    int i=2;
+    *x= 0;
+    *y= 0;
+
+        while (s[i] !=44)
+        {
+            *x=*x*10+s[i]-48;
+            i++;
+        }
+        i++;
+        while (s[i] !=0)
+        {
+            *y=*y*10+s[i]-48;
+            i++;
+        }
+        *no_bomb=s[0]-48;
+}

@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void init (int m, int n, int zamin[n][m])          //برای مقدار دهی اولیه به زمین
+{
+    for (int i= 0; i< m; i++)
+        for (int j=0; j< n; j++)
+        zamin [j][i]= 32;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+void set (int m, int n, int x, int zamin[n][m], int player)           //برای تشخیص نقاط بازیکن ها
+{
+    for (int i= n-1; i>= 0; i--)
+    {
+        if(zamin [i][x] != 32)
+            continue;
+        else
+        {
+            if (player== 1)
+                zamin [i][x]= 65;
+            else
+                zamin[i][x]= 66;
+            break;
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+void print (int m, int n, int zamin[n][m])
+{
+    for (int i= 0; i< n; i++)
+    {
+        for (int j=0; j< m; j++)
+            printf ("|%c ", zamin[i][j]);
+            printf ("\n");
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+int chek (int m, int n, int x, int zamin[n][m])    //شرط ممکن بودن انتخاب مختصات
+{
+    if ((zamin[0][x] != 32) || (x >= m))
+    {
+        printf ("You can t choose here*****choose again\n");
+        return 0;
+    }
+        else
+    return 1;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+int main()
+{
+    int m, n, x;//m=طول زمین
+    printf ("Hello dear !!\n Enter the size of playground::(length is first)\n");
+    scanf ("%d", &m);
+    printf ("Now the width:\n");
+    scanf ("%d", &n);
+    int zamin [n][m];
+    init (m, n,zamin);
+    /////////////////////////////////////////////////////
+    while (1)
+    {
+        printf ("Player one is your turn enter the column :\n");
+        while(1)
+        {
+            scanf ("%d", &x);
+            x--;
+            if (chek(m, n, x, zamin)==0)
+                continue;
+            else
+            {
+            set ( m, n, x, zamin, 1);
+            print(m, n, zamin);
+            break;
+            }
+        }
+        printf ("Player two is your turn enter the column :\n");
+        while(1)
+        {
+            scanf ("%d", &x);
+            x--;
+            if (chek(m, n, x, zamin)==0)
+                continue;
+            else
+            {
+            set ( m, n, x, zamin, 2);
+            print(m, n, zamin);
+            break;
+            }
+
+        }
+    }
+    return 0;
+}

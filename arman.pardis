@@ -8,6 +8,34 @@ void init (int m, int n, int zamin[n][m])          //برای مقدار دهی 
         zamin [j][i]= 32;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+int bord (int m, int n, int zamin [n][m], int player)     //چک کردن شرط برنده بودن
+{
+    int a= 0, b= 0, c=0;
+    for (int i=0; i< n; i++)
+        for (int j=0; j< m; j++)
+    {
+            for (int k=0; k< 4; k++)
+            {
+                if (zamin[i][j+k]== (64+player))
+                a++;
+            }
+            //اریب
+             for (int k=0; k< 4; k++)
+            {
+                if (zamin[i+ k][j+ k]== (64+player))
+                b++;
+            }
+            //اریب
+            for (int k=0; k< 4; k++)
+            {
+                if (zamin[i+ k][j- k]== (64+player))
+                c++;
+            }
+            if ((a== 4) || (b== 4) || (c== 4))
+                return 1;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
 void set (int m, int n, int x, int zamin[n][m], int player)           //برای تشخیص نقاط بازیکن ها
 {
     for (int i= n-1; i>= 0; i--)
@@ -36,6 +64,20 @@ void print (int m, int n, int zamin[n][m])
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+int tasavi (int m, int n, int zamin[n][m])
+{
+    int a=0;
+    for (int i= 0; i< n; i++)
+        for (int j=0; j< m; j++)
+        {
+            if (zamin [i][j] != 32)
+                a++;
+        }
+        if (a== m*n)
+            return 1;
+            else return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
 int chek (int m, int n, int x, int zamin[n][m])    //شرط ممکن بودن انتخاب مختصات
 {
     if ((zamin[0][x] != 32) || (x >= m))
@@ -58,7 +100,7 @@ int main()
     int zamin [n][m];
     init (m, n,zamin);
     /////////////////////////////////////////////////////
-    while (1)
+    while ((bord(m, n, zamin, 1)!= 1) || (bord(m, n, zamin, 2)!= 1) || (tasavi(m, n, zamin)!= 1))
     {
         printf ("Player one is your turn enter the column :\n");
         while(1)
@@ -89,6 +131,18 @@ int main()
             }
 
         }
+        printf ("%d %d %d",(bord(m, n, zamin, 1)== 1) , (bord(m, n, zamin, 2)== 1) , (tasavi(m, n, zamin)== 1) );
     }
+    if (tasavi(m, n, zamin)== 1)
+        printf ("We have not winner!!!");
+    else
+    {
+        if (bord(m, n, zamin, 1)== 1)
+        printf ("Player  one you are winner !!!!!!!");
+    else
+    if ((bord(m, n, zamin, 2)== 1))
+        printf ("Player  two you are winner !!!!!!!");
     return 0;
+    }
+
 }

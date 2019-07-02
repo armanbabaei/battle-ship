@@ -100,7 +100,7 @@ int main()
     int zamin [n][m];
     init (m, n,zamin);
     /////////////////////////////////////////////////////
-    while ((bord(m, n, zamin, 1)!= 1) || (bord(m, n, zamin, 2)!= 1) || (tasavi(m, n, zamin)!= 1))
+    while (tasavi(m, n, zamin)!= 1)
     {
         printf ("Player one is your turn enter the column :\n");
         while(1)
@@ -131,7 +131,6 @@ int main()
             }
 
         }
-        printf ("%d %d %d",(bord(m, n, zamin, 1)== 1) , (bord(m, n, zamin, 2)== 1) , (tasavi(m, n, zamin)== 1) );
     }
     if (tasavi(m, n, zamin)== 1)
         printf ("We have not winner!!!");
